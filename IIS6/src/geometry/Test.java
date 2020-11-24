@@ -101,6 +101,20 @@ public class Test {
 		System.out.println(r1.equals(r2)); // false jer nemaju iste vrednosti obelezja
 		System.out.println(r3.equals(r2)); // true jer imaju iste vrednosti obelezja
 		System.out.println(r3.equals(c1)); // false jer nisu istog tipa
+		
+		Donut d = new Donut();
+		d.setCenter(p2);
+		d.setRadius(20);
+		d.setInnerRadius(10);
+		
+		System.out.println(d);
+		
+		// dinamicko povezivanje
+		Circle c2 = new Donut(new Point(100, 200), 100, 50);
+		
+		System.out.println(d.area());
+		System.out.println(d.equals(new Donut(new Point(50, 70), 60, 30)));
+		System.out.println(d.contains(p3));
 
 	}
 

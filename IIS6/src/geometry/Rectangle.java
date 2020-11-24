@@ -26,6 +26,28 @@ public class Rectangle {
 		return height * width;
 	}
 	
+	public boolean contains(int x, int y) {
+		if (this.upperLeftPoint.getX() <= x &&
+				this.upperLeftPoint.getY() <= y &&
+				x <= this.upperLeftPoint.getX() + this.width &&
+				y <= this.upperLeftPoint.getY() + this.height) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean contains(Point p) {
+		if (this.upperLeftPoint.getX() <= p.getX() &&
+				this.upperLeftPoint.getY() <= p.getY() &&
+				p.getX() <= this.upperLeftPoint.getX() + this.width &&
+				p.getY() <= this.upperLeftPoint.getY() + this.height) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Rectangle) {
 			Rectangle pomocni = (Rectangle) obj;
