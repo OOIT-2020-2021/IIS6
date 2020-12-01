@@ -115,6 +115,10 @@ public class Test {
 		System.out.println(d.area());
 		System.out.println(d.equals(new Donut(new Point(50, 70), 60, 30)));
 		System.out.println(d.contains(p3));
+		
+		System.out.println(c1 instanceof Circle);
+		System.out.println(c1 instanceof SurfaceShape);
+		System.out.println(c1 instanceof Shape);
 
 	}
 

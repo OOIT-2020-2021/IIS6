@@ -1,10 +1,12 @@
 package geometry;
 
-public class Line {
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Line extends Shape {
 
 	private Point startPoint;
 	private Point endPoint;
-	private boolean selected;
 	
 	public Line() {
 		
@@ -17,7 +19,18 @@ public class Line {
 	
 	public Line(Point startPoint, Point endPoint, boolean selected) {
 		this(startPoint, endPoint);
-		this.selected = selected;
+		setSelected(selected);
+	}
+	
+	public Line(Point startPoint, Point endPoint, boolean selected, Color color) {
+		this(startPoint, endPoint, selected);
+		setColor(color);
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(getColor());
+		g.drawLine(this.startPoint.getX(), this.startPoint.getY(), this.endPoint.getX(), this.endPoint.getY());
 	}
 	
 	public double length() {
@@ -57,12 +70,6 @@ public class Line {
 	}
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
-	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 	
 	public String toString() {

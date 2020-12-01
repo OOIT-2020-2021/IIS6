@@ -1,11 +1,13 @@
 package geometry;
 
-public class Rectangle {
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Rectangle extends SurfaceShape {
 
 	private Point upperLeftPoint;
 	private int width;
 	private int height;
-	private boolean selected;
 	
 	public Rectangle() {
 		
@@ -19,7 +21,31 @@ public class Rectangle {
 	
 	public Rectangle(Point upperLeftPoint, int width, int height, boolean selected) {
 		this(upperLeftPoint, width, height);
-		this.selected = selected;
+		setSelected(selected);
+	}
+	
+	public Rectangle(Point upperLeftPoint, int width, int height, boolean selected, Color color) {
+		this(upperLeftPoint, width, height, selected);
+		setColor(color);
+	}
+	
+	public Rectangle(Point upperLeftPoint, int width, int height, boolean selected, Color color, Color innerColor) {
+		this(upperLeftPoint, width, height, selected, color);
+		setInnerColor(innerColor);
+	}
+	
+	@Override
+	public void fill(Graphics g) {
+		g.setColor(getInnerColor());
+		g.fillRect(this.upperLeftPoint.getX() + 1, this.upperLeftPoint.getY() + 1, this.width-1, this.height-1);
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(getColor());
+		g.drawRect(this.upperLeftPoint.getX(), this.upperLeftPoint.getY(), this.width, this.height);
+		this.fill(g);
 	}
 	
 	public int area() {
@@ -34,7 +60,7 @@ public class Rectangle {
 			return true;
 		} else {
 			return false;
-		}
+		} 
 	}
 	
 	public boolean contains(Point p) {
@@ -80,12 +106,6 @@ public class Rectangle {
 	}
 	public void setHeight(int height) {
 		this.height = height;
-	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 	
 	public String toString() {

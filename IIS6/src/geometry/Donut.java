@@ -3,7 +3,6 @@ package geometry;
 public class Donut extends Circle {
 
 	private int innerRadius;
-	private boolean selected;
 	
 	public Donut() {
 		
@@ -13,10 +12,10 @@ public class Donut extends Circle {
 		super(center, radius); // mora biti 1. linija koda
 		this.innerRadius = innerRadius;
 	}
-	
+	 
 	public Donut(Point center, int radius, int innerRadius, boolean selected) {
 		this(center, radius, innerRadius);
-		this.selected = selected;
+		setSelected(selected);
 	}
 	
 	public double area() {
@@ -54,14 +53,6 @@ public class Donut extends Circle {
 
 	public void setInnerRadius(int innerRadius) {
 		this.innerRadius = innerRadius;
-	}
-
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 	
 	// toString
