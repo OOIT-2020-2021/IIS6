@@ -33,6 +33,19 @@ public class Circle extends SurfaceShape {
 	}
 	
 	@Override
+	public void moveBy(int byX, int byY) {
+		this.center.moveBy(byX, byY);
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Circle) {
+			return this.radius - ((Circle) o).getRadius();
+		}
+		return 0;
+	}
+
+	@Override
 	public void fill(Graphics g) {
 		g.setColor(getInnerColor());
 		g.fillOval(this.center.getX() - this.radius + 1, this.center.getY() - this.radius + 1, this.radius*2 - 2, this.radius*2 - 2);

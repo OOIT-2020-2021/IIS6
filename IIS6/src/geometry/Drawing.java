@@ -35,6 +35,10 @@ public class Drawing extends JPanel {
 		Rectangle r = new Rectangle(new Point(300, 300), 120, 170, true, Color.RED, Color.YELLOW);
 		r.draw(g);
 		
+		Donut d = new Donut(new Point(520, 400), 50, 30, false, Color.RED, Color.GREEN);
+		d.draw(g);
+		
+		
 	}
 	
 }
