@@ -1,6 +1,7 @@
 package geometry;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Test {
 
@@ -65,7 +66,7 @@ public class Test {
 		// gore levo od r1
 		
 		Circle c1 = new Circle();
-		c1.setRadius(20);
+		// c1.setRadius(20);
 		c1.setCenter(r1.getUpperLeftPoint());
 
 		// 8. Postaviti x koordinatu centra kruga c1 na vrednost razlike
@@ -106,7 +107,7 @@ public class Test {
 		
 		Donut d = new Donut();
 		d.setCenter(p2);
-		d.setRadius(20);
+		// d.setRadius(20);
 		d.setInnerRadius(10);
 		
 		System.out.println(d);
@@ -141,7 +142,30 @@ public class Test {
 		for (int i = 0; i < points.length; i++) {
 			System.out.println(points[i]);
 		}
+		
+		// HashMap
+		HashMap<String, Shape> map = new HashMap<String, Shape>();
+		map.put("point", p1);
+		map.put("rectangle", r1);
+		map.put("Point", p3);
+		
+		System.out.println("point from map is: " + map.get("point"));
+		System.out.println("point from map is: " + map.get("Point"));
+		
+		Point p8 = new Point(100, 100);
+		map.put("point", p8);
+		System.out.println("point from map is: " + map.get("point"));
 
+		Circle c3 = new Circle(p5, 40);
+		
+		try {
+			c3.setRadius(-50);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("Uvek se izvrsava!");
+		}
+		
 	}
 
 }
