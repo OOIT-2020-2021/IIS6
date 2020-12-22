@@ -74,15 +74,17 @@ public class Drawing extends JPanel {
 		}
 		
 		// iscrtati svaki oblik iz shapes liste pomocu for each petlje
-		for(Shape s : shapes) {
-			s.draw(g);
-		}
+//		for(Shape s : shapes) {
+//			s.draw(g);
+//		}
 		
 		// setujemo kao selektovane samo povrsinske oblike
-		while(it.hasNext()) {
-			if (it.next() instanceof SurfaceShape) {
-				it.next().setSelected(true);
-			}
+		for(Shape s : shapes) {
+			s.setSelected(true);
+		}
+		
+		for(Shape s : shapes) {
+			s.draw(g);
 		}
 		
 	}
