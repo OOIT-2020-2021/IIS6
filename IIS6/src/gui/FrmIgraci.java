@@ -142,6 +142,38 @@ public class FrmIgraci extends JFrame {
 			}
 		});
 		
+		JButton btnDodajIgraca = new JButton("Dodaj igraca");
+		btnDodajIgraca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgIgrac dlg = new DlgIgrac();
+				dlg.setVisible(true);
+				if(dlg.isOk) {
+					dlm.addElement(dlg.getTxtIme().getText() + " " + dlg.getTxtPrezime().getText());
+				}
+			}
+		});
+		
+		JButton btnModifikujIgraca = new JButton("Modifikuj igraca");
+		btnModifikujIgraca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(listIgraci.isSelectionEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nije selektovan nijedan igrac iz liste!");
+				} else {
+					DlgIgrac dlgModifikacija = new DlgIgrac();
+					int index = listIgraci.getSelectedIndex();
+					String[] split = dlm.getElementAt(index).toString().split(" ");
+					dlgModifikacija.getTxtIme().setText(split[0]);
+					dlgModifikacija.getTxtPrezime().setText(split[1]);
+					dlgModifikacija.setVisible(true);
+					if(dlgModifikacija.isOk) {
+						dlm.removeElementAt(index);
+						dlm.add(index, dlgModifikacija.getTxtIme().getText() + " " + 
+								dlgModifikacija.getTxtPrezime().getText());
+					}
+				}
+			}
+		});
+		
 		GroupLayout gl_pnlCenter = new GroupLayout(pnlCenter);
 		gl_pnlCenter.setHorizontalGroup(
 			gl_pnlCenter.createParallelGroup(Alignment.LEADING)
@@ -170,17 +202,17 @@ public class FrmIgraci extends JFrame {
 												.addComponent(cbxIgraci, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 											.addComponent(lblNemanjaGudelj, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE))))
 								.addComponent(lblOdaberiIgraca))
-							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING)
+							.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnUkloniIgraca)
+								.addComponent(scrollPaneIgraci, GroupLayout.PREFERRED_SIZE, 292, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_pnlCenter.createSequentialGroup()
-									.addGap(18)
 									.addComponent(btnUnesiUListu)
-									.addContainerGap())
-								.addGroup(Alignment.TRAILING, gl_pnlCenter.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-									.addGroup(gl_pnlCenter.createParallelGroup(Alignment.TRAILING)
-										.addComponent(btnUkloniIgraca)
-										.addComponent(scrollPaneIgraci, GroupLayout.PREFERRED_SIZE, 292, GroupLayout.PREFERRED_SIZE))
-									.addGap(39))))))
+									.addGap(170)
+									.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnModifikujIgraca)
+										.addComponent(btnDodajIgraca))))
+							.addGap(39))))
 		);
 		gl_pnlCenter.setVerticalGroup(
 			gl_pnlCenter.createParallelGroup(Alignment.LEADING)
@@ -210,11 +242,14 @@ public class FrmIgraci extends JFrame {
 							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblOdaberiIgraca)
 								.addComponent(cbxIgraci, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnUnesiUListu)))
+								.addComponent(btnUnesiUListu)
+								.addComponent(btnDodajIgraca)))
 						.addGroup(gl_pnlCenter.createSequentialGroup()
 							.addGap(18)
 							.addComponent(btnUkloniIgraca)))
-					.addContainerGap(78, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnModifikujIgraca)
+					.addContainerGap(40, Short.MAX_VALUE))
 		);
 		
 		scrollPaneIgraci.setViewportView(listIgraci);
